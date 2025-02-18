@@ -2,12 +2,17 @@ import "./BookList.css";
 import { deleteBook, toggleFavorite } from "../../redux/books/actionCreaters";
 import { useSelector, useDispatch } from "react-redux";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
-import { selectTitle, selectAuthor } from "../../redux/slices/filterSlice";
+import {
+  selectTitle,
+  selectAuthor,
+  selectFavorite,
+} from "../../redux/slices/filterSlice";
 
 export default function BookList() {
   const books = useSelector((state) => state.books);
   const titleFilter = useSelector(selectTitle);
   const authorFilter = useSelector(selectAuthor);
+  const onlyFavoriteFilter = useSelector(selectFavorite);
   const dispatch = useDispatch();
 
   function handelDeleteBook(id) {
@@ -27,7 +32,8 @@ export default function BookList() {
       .toLowerCase()
       .includes(authorFilter.toLowerCase());
 
-    return matchesTitle && matchesAuthor;
+    const matchesFavorite = onlyFavoriteFilter ? book.isFavorite : true;
+    return matchesTitle && matchesAuthor && matchesFavorite;
   });
 
   return (
