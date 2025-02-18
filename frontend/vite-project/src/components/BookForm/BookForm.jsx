@@ -4,7 +4,7 @@ import booksData from "../../data/books.json";
 import createBookWuthID from "../../utils/creatBookWithID";
 
 import { useDispatch } from "react-redux";
-import { addBook } from "../../redux/books/actionCreaters";
+import { addBook } from "../../redux/slices/bookSlice";
 
 export default function BookForm() {
   const [title, setTitle] = useState("");

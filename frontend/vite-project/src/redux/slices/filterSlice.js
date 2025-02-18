@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const initialState = {
   title: "",
   author: "",
   onlyFavorite: false,
 };
+
 const filterSlice = createSlice({
   name: "filter",
   initialState: initialState,
