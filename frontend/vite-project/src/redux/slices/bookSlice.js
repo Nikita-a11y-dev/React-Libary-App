@@ -3,8 +3,6 @@ import axios from "axios";
 import createBookWuthID from "../../utils/creatBookWithID";
 import { setError } from "./errorSlice";
 
-const initialState = [];
-
 export const fetchBook = createAsyncThunk(
   "books/fetchBook",
   async (url, thunkAPI) => {
@@ -17,6 +15,18 @@ export const fetchBook = createAsyncThunk(
     }
   }
 );
+
+const loadBooksFromLocalStorage = () => {
+  try {
+    const savedBooks = localStorage.getItem("books");
+    return savedBooks ? JSON.parse(savedBooks) : [];
+  } catch (error) {
+    console.error("Ошибка при загрузке книг из localStorage:", error);
+    return [];
+  }
+};
+
+const initialState = loadBooksFromLocalStorage();
 
 const bookSlice = createSlice({
   name: "books",
