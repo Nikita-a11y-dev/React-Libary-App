@@ -41,39 +41,6 @@ export default function Filter() {
   };
 
   return (
-    // <div className="app-block filter">
-    //   <div className="filter-row">
-    //     <div className="filter-group">
-    //       <input
-    //         onChange={handleTitleFilterChange}
-    //         type="text"
-    //         value={titleFilter}
-    //         placeholder="Filter by Title..."
-    //       />
-    //     </div>
-    //     <div className="filter-group">
-    //       <input
-    //         onChange={handleAuthorFilterChange}
-    //         type="text"
-    //         value={authorFilter}
-    //         placeholder="Filter by Author..."
-    //       />
-    //     </div>
-    //     <div className="filter-group">
-    //       <label>
-    //         <input
-    //           type="checkbox"
-    //           checked={onlyFavoriteFilter}
-    //           onChange={handleOnlyFavoriteFilterChange}
-    //         />
-    //         Only Favorite
-    //       </label>
-    //     </div>
-    //     <button type="button " onClick={handleResetFilters}>
-    //       Reset Filters
-    //     </button>
-    //   </div>
-    // </div>
     <Box
       display="flex"
       alignItems="center"
@@ -83,20 +50,39 @@ export default function Filter() {
         backgroundColor: "background.paper",
         pt: 1,
         m: 2.5,
-        width: "800px",
+        maxWidth: "850px",
         borderRadius: 2,
       }}
     >
-      <TextField label="Title" />
-      <TextField label="Title" />
+      <TextField
+        label="Title"
+        onChange={handleTitleFilterChange}
+        value={titleFilter}
+      />
+
+      <TextField
+        label="Title"
+        onChange={handleAuthorFilterChange}
+        type="text"
+        value={authorFilter}
+      />
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              checked={onlyFavoriteFilter}
+              onChange={handleOnlyFavoriteFilterChange}
+            />
+          }
           label="Favorite"
         />
       </FormGroup>
 
-      <Button variant="outlined" sx={{ width: "200px", mb: 1 }}>
+      <Button
+        variant="outlined"
+        sx={{ width: "200px", mb: 1 }}
+        onClick={handleResetFilters}
+      >
         Reset Filters
       </Button>
     </Box>

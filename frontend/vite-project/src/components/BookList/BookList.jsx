@@ -1,7 +1,19 @@
-import "./BookList.css";
 import { deleteBook, toggleFavorite } from "../../redux/slices/bookSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  IconButton,
+  Typography,
+  Button,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import {
   selectTitle,
   selectAuthor,
@@ -36,13 +48,21 @@ export default function BookList() {
     return matchesTitle && matchesAuthor && matchesFavorite;
   });
 
+  const DeleteButton = styled(Button)(({ theme }) => ({
+    backgroundColor: "#DC3545",
+    color: "#FFFFFF",
+    "&:hover": {
+      backgroundColor: "#B02A37",
+    },
+  }));
+
   const highlightMatch = (text, filter) => {
     if (!filter) return text;
     const regex = new RegExp(`(${filter})`, "gi");
     return text.split(regex).map((substring, i) => {
       if (substring.toLowerCase() === filter.toLowerCase()) {
         return (
-          <span key={i} className="highlight">
+          <span key={i} style={{ backgroundColor: "#ff0" }}>
             {substring}
           </span>
         );
@@ -52,35 +72,87 @@ export default function BookList() {
   };
 
   return (
-    <div className="app-block book-list">
-      <h2>List</h2>
+    <TableContainer
+      component={Paper}
+      sx={{
+        backgroundColor: "background.paper",
+        pt: 1,
+        m: 2.5,
+        width: "850px",
+        borderRadius: 2,
+      }}
+    >
+      <Typography
+        variant="h4"
+        gutterBottom
+        align="center"
+        sx={{ fontWeight: "600" }}
+      >
+        List
+      </Typography>
       {filteredBooks.length === 0 ? (
-        <p>No books available</p>
+        <Typography variant="h6" gutterBottom align="center">
+          No books available
+        </Typography>
       ) : (
-        <ul>
-          {filteredBooks.map((book, i) => (
-            <li key={book.id}>
-              <div className="book-info">
-                {++i}. {highlightMatch(book.title, titleFilter)} by {""}
-                <strong>{highlightMatch(book.author, authorFilter)}</strong> (
-                {book.source})
-              </div>
-              <div className="book-actions">
-                <span onClick={() => handleToggleFavorite(book.id)}>
-                  {book.isFavorite ? (
-                    <BsBookmarkStarFill className="star-icon" />
-                  ) : (
-                    <BsBookmarkStar className="star-icon" />
-                  )}
-                </span>
-                <button onClick={() => handelDeleteBook(book.id)}>
-                  delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ width: "10%" }}>№</TableCell>
+              <TableCell sx={{ width: "25%" }}>Title</TableCell>
+              <TableCell sx={{ width: "25%" }}>Author</TableCell>
+              <TableCell sx={{ width: "40%" }}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {filteredBooks.map((book, index) => (
+              <TableRow key={book.id}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{highlightMatch(book.title, titleFilter)}</TableCell>
+                <TableCell>
+                  <strong>{highlightMatch(book.author, authorFilter)}</strong> (
+                  {book.source})
+                </TableCell>
+                <TableCell
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "end",
+                  }}
+                >
+                  <span onClick={() => handleToggleFavorite(book.id)}>
+                    {book.isFavorite ? (
+                      <BsBookmarkStarFill
+                        style={{
+                          fontSize: "24px",
+                          margin: "0 20px",
+                          cursor: "pointer",
+                          transition: "color 0.3s ease",
+                          color: "#fca510",
+                        }}
+                      />
+                    ) : (
+                      <BsBookmarkStar
+                        style={{
+                          fontSize: "24px",
+                          margin: "0 20px",
+                          cursor: "pointer",
+                          transition: "color 0.3s ease",
+                          color: "#fca510",
+                        }}
+                      />
+                    )}
+                  </span>
+                  <DeleteButton onClick={() => handelDeleteBook(book.id)}>
+                    delete
+                  </DeleteButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       )}
-    </div>
+    </TableContainer>
   );
 }
