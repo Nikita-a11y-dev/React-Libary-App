@@ -10,12 +10,13 @@ import { Typography, Button, Box, Container } from "@mui/material";
 
 import lightTheme from "./theme/lightTheme";
 import darkTheme from "./theme/darkTheme";
+import CustomizedSwitches from "./components/CustomizedSwitches";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
+  const toggleTheme = (event) => {
+    setDarkMode(event.target.checked);
   };
 
   const theme = darkMode ? darkTheme : lightTheme;
@@ -48,9 +49,7 @@ export default function App() {
           >
             Book Liberty App
           </Typography>
-          <Button variant="contained" onClick={toggleTheme}>
-            0
-          </Button>
+          <CustomizedSwitches onChange={toggleTheme} checked={darkMode} />
         </Box>
 
         <Container maxWidth="xl">
