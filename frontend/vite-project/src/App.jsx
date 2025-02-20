@@ -3,23 +3,69 @@ import BookForm from "./components/BookForm/BookForm";
 import Filter from "./components/Filter/Filter";
 import Error from "./components/Error/Error";
 import "./App.css";
+import { useState } from "react";
+
+import { ThemeProvider } from "@mui/material/styles";
+import { Typography, Button, Box, Container } from "@mui/material";
+
+import lightTheme from "./theme/lightTheme";
+import darkTheme from "./theme/darkTheme";
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Book Libery App</h1>
-      </header>
-      <main className="app-main">
-        <div className="app-left-column">
-          <BookForm></BookForm>
-        </div>
-        <div className="app-right-column">
-          <Filter></Filter>
-          <BookList></BookList>
-        </div>
-      </main>
-      <Error />
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          backgroundColor: "background.default",
+          minHeight: "100vh",
+        }}
+      >
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          px={2}
+          sx={{
+            backgroundColor: "background.header",
+            pt: 1,
+          }}
+        >
+          <Typography
+            variant="h3"
+            gutterBottom
+            align="center"
+            style={{ flexGrow: 1 }}
+            color="text.primary"
+          >
+            Book Liberty App
+          </Typography>
+          <Button variant="contained" onClick={toggleTheme}>
+            0
+          </Button>
+        </Box>
+
+        <Container>
+          <main className="app-main">
+            <div className="app-left-column">
+              <BookForm></BookForm>
+            </div>
+            <div className="app-right-column">
+              <Filter></Filter>
+              <BookList></BookList>
+            </div>
+          </main>
+
+          <Error />
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 }
