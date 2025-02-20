@@ -55,6 +55,7 @@ export default function BookForm() {
         p: "10px",
         mt: 2.5,
         width: "500px",
+        boxShadow: "rgba(0,0,0,0.1)",
       }}
     >
       <Grid item xs={12} md={6}>
