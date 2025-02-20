@@ -36,6 +36,7 @@ export default function App() {
           sx={{
             backgroundColor: "background.header",
             pt: 1,
+            mb: 8,
           }}
         >
           <Typography

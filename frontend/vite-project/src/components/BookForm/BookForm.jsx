@@ -7,6 +7,7 @@ import { setError } from "../../redux/slices/errorSlice";
 import { addBook, fetchBook } from "../../redux/slices/bookSlice";
 
 import { useDispatch } from "react-redux";
+import { Grid, TextField, Typography, Button } from "@mui/material";
 
 export default function BookForm() {
   const [title, setTitle] = useState("");
@@ -43,34 +44,69 @@ export default function BookForm() {
   };
 
   return (
-    <div className="app-block book-form">
-      <h2>Add new book</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="author">Author:</label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-        </div>
-        <button type="submit">Add book</button>
-        <button type="button" onClick={handleAddRandomBook}>
-          Add random
-        </button>
+    <Grid
+      container
+      spacing={2}
+      direction="column"
+      alignItems="center"
+      sx={{
+        backgroundColor: "background.paper",
+        borderRadius: 2,
+        maxWidth: "400px",
+        p: "10px",
+      }}
+    >
+      <Grid item xs={12} md={6}>
+        <Typography variant="h4" gutterBottom align="center" color="text.title">
+          ADD NEW BOOK
+        </Typography>
+      </Grid>
 
-        <button
-          type="button"
+      <Grid item xs={12} md={6}>
+        <TextField
+          fullWidth
+          label="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6} sx={{ mb: "10px" }}>
+        <TextField
+          fullWidth
+          label="Author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        />
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        md={6}
+        container
+        direction="column"
+        alignItems="center"
+      >
+        <Button
+          variant="outlined"
+          sx={{ width: "200px", mb: 1 }}
+          onClick={handleSubmit}
+        >
+          Add Book
+        </Button>
+
+        <Button
+          variant="outlined"
+          sx={{ width: "200px", mb: 1 }}
+          onClick={handleAddRandomBook}
+        >
+          Add Random
+        </Button>
+
+        <Button
+          variant="outlined"
+          sx={{ width: "250px" }}
           onClick={handleAddRandomBookByAPI}
           disabled={isLoading}
         >
@@ -82,8 +118,8 @@ export default function BookForm() {
           ) : (
             "Add random book by API"
           )}
-        </button>
-      </form>
-    </div>
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
