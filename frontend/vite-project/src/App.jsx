@@ -53,7 +53,7 @@ export default function App() {
           </Button>
         </Box>
 
-        <Container>
+        <Container maxWidth="xl">
           <main className="app-main">
             <div className="app-left-column">
               <BookForm></BookForm>

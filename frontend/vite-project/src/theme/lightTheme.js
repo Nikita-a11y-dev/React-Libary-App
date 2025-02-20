@@ -48,6 +48,36 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "#CCCCCC", // Цвет по умолчанию
+          "&.Mui-checked": {
+            color: "#007BFF", // Цвет при выборе
+          },
+          "& .MuiSvgIcon-root": {
+            fontSize: "28px", // Увеличиваем размер иконки
+          },
+        },
+      },
+      defaultProps: {
+        disableRipple: true, // Убираем ripple-эффект
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          marginLeft: "0px", // Отступ слева
+          marginBottom: "5px", // Отступ снизу
+          alignItems: "center", // Центрирование
+        },
+        label: {
+          color: "#7a7a7a", // Цвет текста лейбла
+          fontSize: "1rem", // Размер шрифта
+          fontWeight: "600", // Жирность шрифта
+        },
+      },
+    },
   },
 });
 

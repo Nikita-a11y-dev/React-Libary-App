@@ -52,8 +52,9 @@ export default function BookForm() {
       sx={{
         backgroundColor: "background.paper",
         borderRadius: 2,
-        maxWidth: "400px",
         p: "10px",
+        mt: 2.5,
+        width: "500px",
       }}
     >
       <Grid item xs={12} md={6}>
@@ -68,6 +69,7 @@ export default function BookForm() {
           label="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          sx={{ width: "300px", mb: 1 }}
         />
       </Grid>
 
@@ -77,6 +79,7 @@ export default function BookForm() {
           label="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          sx={{ width: "300px", mb: 1 }}
         />
       </Grid>
 
@@ -90,7 +93,7 @@ export default function BookForm() {
       >
         <Button
           variant="outlined"
-          sx={{ width: "200px", mb: 1 }}
+          sx={{ width: "300px", mb: 1 }}
           onClick={handleSubmit}
         >
           Add Book
@@ -98,7 +101,7 @@ export default function BookForm() {
 
         <Button
           variant="outlined"
-          sx={{ width: "200px", mb: 1 }}
+          sx={{ width: "300px", mb: 1 }}
           onClick={handleAddRandomBook}
         >
           Add Random
@@ -106,7 +109,7 @@ export default function BookForm() {
 
         <Button
           variant="outlined"
-          sx={{ width: "250px" }}
+          sx={{ width: "300px" }}
           onClick={handleAddRandomBookByAPI}
           disabled={isLoading}
         >

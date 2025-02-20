@@ -5,21 +5,12 @@
   justify-content: center;
   text-align: center;
 }
-
-.app-header {
-  background-color: #d7d7d7;
-  color: #333333;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .app-main {
   display: flex;
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
 }
-
 .app-left-column {
   flex: 1;
   flex-basis: 35%;
