@@ -14,6 +14,7 @@ import darkTheme from "./theme/darkTheme";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Layout from "./page/Layout";
 import Home from "./page/Home";
+import About from "./page/About";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -31,7 +32,6 @@ export default function App() {
     setDarkMode(isDarkMode);
     localStorage.setItem("theme", JSON.stringify(isDarkMode));
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -40,6 +40,7 @@ export default function App() {
           element={<Layout darkMode={darkMode} toggleTheme={toggleTheme} />}
         >
           <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
         </Route>
       </Routes>
     </ThemeProvider>

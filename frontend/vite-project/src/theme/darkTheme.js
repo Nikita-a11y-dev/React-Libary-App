@@ -15,6 +15,11 @@ const darkTheme = createTheme({
       title: "#FFFFFF",
       text: "#DDDDDD",
     },
+    link: {
+      main: "#4F8CFF", // неактивныx ссылок
+      active: "#FF6347", //  активных
+      hover: "#5FAFFF", // Освещенная ссылка при наведении
+    },
   },
   components: {
     MuiButton: {

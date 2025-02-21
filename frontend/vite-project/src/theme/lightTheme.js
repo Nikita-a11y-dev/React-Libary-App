@@ -15,6 +15,11 @@ const lightTheme = createTheme({
       title: "#333333",
       text: "#555555",
     },
+    link: {
+      main: "#1A73E8", // Синий для неактивных ссылок
+      active: "#FF4500", // Оранжевый для активных
+      hover: "#4A90E2", // Легкое выделение при наведении
+    },
   },
   components: {
     MuiButton: {
