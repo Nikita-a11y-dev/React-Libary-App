@@ -10,7 +10,10 @@ import { Typography, Button, Box, Container } from "@mui/material";
 
 import lightTheme from "./theme/lightTheme";
 import darkTheme from "./theme/darkTheme";
-import CustomizedSwitches from "./components/CustomizedSwitches";
+
+import { Routes, Route, Outlet } from "react-router-dom";
+import Layout from "./page/Layout";
+import Home from "./page/Home";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -31,49 +34,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          backgroundColor: "background.default",
-          minHeight: "100vh",
-        }}
-      >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          px={2}
-          sx={{
-            backgroundColor: "background.header",
-            pt: 1,
-            mb: 8,
-          }}
+      <Routes>
+        <Route
+          path="/"
+          element={<Layout darkMode={darkMode} toggleTheme={toggleTheme} />}
         >
-          <Typography
-            variant="h3"
-            gutterBottom
-            align="center"
-            style={{ flexGrow: 1 }}
-            color="text.primary"
-          >
-            Book Liberty App
-          </Typography>
-          <CustomizedSwitches onChange={toggleTheme} checked={darkMode} />
-        </Box>
-
-        <Container maxWidth="xl">
-          <main className="app-main">
-            <div className="app-left-column">
-              <BookForm></BookForm>
-            </div>
-            <div className="app-right-column">
-              <Filter></Filter>
-              <BookList></BookList>
-            </div>
-          </main>
-
-          <Error />
-        </Container>
-      </Box>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 }
