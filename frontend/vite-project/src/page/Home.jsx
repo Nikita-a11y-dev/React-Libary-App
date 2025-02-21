@@ -10,7 +10,7 @@ export default function Home() {
     <Box
       sx={{
         backgroundColor: "background.default",
-        minHeight: "100vh",
+        minHeight: "82.3vh",
       }}
     >
       <Container maxWidth="xl">

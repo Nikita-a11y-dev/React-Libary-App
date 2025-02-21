@@ -84,16 +84,16 @@ function ResponsiveAppBar() {
                 padding: "10px",
                 fontWeight: "bold",
               })}
-              onMouseEnter={({ target }) =>
-                (target.style.color = theme.palette.link.hover)
-              }
-              onMouseLeave={({ target }) =>
-                (target.style.color = theme.palette.link.main)
-              }
             >
               <Typography
                 variant="h5"
-                sx={{ my: 3, display: "block", pr: 3, pl: 12 }}
+                sx={{
+                  my: 3,
+                  display: "block",
+                  pr: 3,
+                  pl: 12,
+                  color: "inherit",
+                }}
               >
                 Home
               </Typography>
@@ -107,16 +107,16 @@ function ResponsiveAppBar() {
                 padding: "10px",
                 fontWeight: "bold",
               })}
-              onMouseEnter={({ target }) =>
-                (target.style.color = theme.palette.link.hover)
-              }
-              onMouseLeave={({ target }) =>
-                (target.style.color = theme.palette.link.main)
-              }
             >
               <Typography
                 variant="h5"
-                sx={{ my: 3, display: "block", pr: 3, pl: 12 }}
+                sx={{
+                  my: 3,
+                  display: "block",
+                  pr: 3,
+                  pl: 12,
+                  color: "inherit",
+                }}
               >
                 About
               </Typography>
@@ -130,16 +130,16 @@ function ResponsiveAppBar() {
                 padding: "10px",
                 fontWeight: "bold",
               })}
-              onMouseEnter={({ target }) =>
-                (target.style.color = theme.palette.link.hover)
-              }
-              onMouseLeave={({ target }) =>
-                (target.style.color = theme.palette.link.main)
-              }
             >
               <Typography
                 variant="h5"
-                sx={{ my: 3, display: "block", pr: 3, pl: 12 }}
+                sx={{
+                  my: 3,
+                  display: "block",
+                  pr: 3,
+                  pl: 12,
+                  color: "inherit",
+                }}
               >
                 Book
               </Typography>

@@ -1,12 +1,7 @@
-import BookList from "./components/BookList/BookList";
-import BookForm from "./components/BookForm/BookForm";
-import Filter from "./components/Filter/Filter";
-import Error from "./components/Error/Error";
 import "./App.css";
 import { useState, useLayoutEffect, useMemo } from "react";
 
 import { ThemeProvider } from "@mui/material/styles";
-import { Typography, Button, Box, Container } from "@mui/material";
 
 import lightTheme from "./theme/lightTheme";
 import darkTheme from "./theme/darkTheme";
@@ -15,6 +10,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Layout from "./page/Layout";
 import Home from "./page/Home";
 import About from "./page/About";
+import Notfoundpage from "./page/Notfoundpage";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -41,6 +37,7 @@ export default function App() {
         >
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="*" element={<Notfoundpage />} />
         </Route>
       </Routes>
     </ThemeProvider>

@@ -1,28 +1,28 @@
-import { Typography, Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Typography, Box, Container } from "@mui/material";
+import AccordionUsage from "../components/AccordionUsage";
 
 export default function About() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setVisible(true);
-  }, []);
-
   return (
-    <Box>
-      <Typography
-        variant="h4"
-        sx={{
-          opacity: visible ? 1 : 0,
-          transition: "opacity 1s ease-in-out",
-        }}
-      >
-        О проекте
-      </Typography>
-      <Typography variant="body1" sx={{ marginTop: "20px" }}>
-        Мы создаем приложение для любителей книг. Эта информация появится с
-        анимацией.
-      </Typography>
+    <Box sx={{ backgroundColor: "background.default", p: 4 }}>
+      <Container maxWidth="lg" sx={{ height: "76vh" }}>
+        <Typography
+          variant="h4"
+          align="left"
+          sx={{ color: "text.title", mb: 2 }}
+        >
+          About the Book Liberty Project
+        </Typography>
+        <Typography
+          variant="h5"
+          align="left"
+          sx={{ color: "text.text", mb: 5 }}
+        >
+          Book Liberty is an application that helps users delete, add to
+          favorites and filter books. We strive to provide A simple and
+          convenient tool for all book lovers.
+        </Typography>
+        <AccordionUsage />
+      </Container>
     </Box>
   );
 }
