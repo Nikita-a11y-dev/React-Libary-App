@@ -3,7 +3,7 @@ import BookForm from "./components/BookForm/BookForm";
 import Filter from "./components/Filter/Filter";
 import Error from "./components/Error/Error";
 import "./App.css";
-import { useState } from "react";
+import { useState, useLayoutEffect, useMemo } from "react";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { Typography, Button, Box, Container } from "@mui/material";
@@ -15,11 +15,19 @@ import CustomizedSwitches from "./components/CustomizedSwitches";
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleTheme = (event) => {
-    setDarkMode(event.target.checked);
-  };
+  useLayoutEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    const isDarkMode = storedTheme ? JSON.parse(storedTheme) : false;
+    setDarkMode(isDarkMode);
+  }, []);
 
-  const theme = darkMode ? darkTheme : lightTheme;
+  const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
+
+  const toggleTheme = (event) => {
+    const isDarkMode = event.target.checked;
+    setDarkMode(isDarkMode);
+    localStorage.setItem("theme", JSON.stringify(isDarkMode));
+  };
 
   return (
     <ThemeProvider theme={theme}>
