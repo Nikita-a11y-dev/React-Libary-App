@@ -1,4 +1,5 @@
 import "./Filter.css";
+import { useEffect } from "react";
 import {
   setTitleFilter,
   setAuthorFilter,
@@ -17,6 +18,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 export default function Filter() {
   const dispatch = useDispatch();
@@ -24,21 +26,44 @@ export default function Filter() {
   const authorFilter = useSelector(selectAuthor);
   const onlyFavoriteFilter = useSelector(selectFavorite);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleTitleFilterChange = (e) => {
     dispatch(setTitleFilter(e.target.value));
-  };
-
-  const handleResetFilters = () => {
-    dispatch(resetFilters());
   };
 
   const handleAuthorFilterChange = (e) => {
     dispatch(setAuthorFilter(e.target.value));
   };
 
-  const handleOnlyFavoriteFilterChange = () => {
-    dispatch(setOnlyFavoriteFilter());
+  const handleOnlyFavoriteFilterChange = (e) => {
+    dispatch(setOnlyFavoriteFilter(e.target.checked));
   };
+
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
+    setSearchParams({});
+  };
+
+  useEffect(() => {
+    const title = searchParams.get("title") || "";
+    const author = searchParams.get("author") || "";
+    let favorite = searchParams.get("favorite") === "true";
+
+    dispatch(setTitleFilter(title));
+    dispatch(setAuthorFilter(author));
+    dispatch(setOnlyFavoriteFilter(favorite));
+  }, []);
+
+  useEffect(() => {
+    const params = {};
+
+    if (titleFilter) params.title = titleFilter;
+    if (authorFilter) params.author = authorFilter;
+    params.favorite = onlyFavoriteFilter;
+
+    setSearchParams(params);
+  }, [titleFilter, authorFilter, onlyFavoriteFilter]);
 
   return (
     <Box
@@ -61,7 +86,7 @@ export default function Filter() {
       />
 
       <TextField
-        label="Title"
+        label="Author"
         onChange={handleAuthorFilterChange}
         type="text"
         value={authorFilter}
